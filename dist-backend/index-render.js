@@ -159,19 +159,20 @@ var storage = new DatabaseStorage();
 import { z as z2 } from "zod";
 import cors from "cors";
 async function registerRoutes(app2) {
-  app2.use(cors({
-    origin: [
-      "http://localhost:3000",
-      "http://localhost:5000",
-      /\.infinityfreeapp\.com$/,
-      /\.000webhostapp\.com$/,
-      /\.onrender\.com$/,
-      ...process.env.FRONTEND_URLS ? process.env.FRONTEND_URLS.split(",") : []
-    ],
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"]
-  }));
+  app.use(cors({
+  origin: [
+    'http://referidostemuco.infinityfree.me',
+    /\.infinityfreeapp\.com$/,
+    /\.000webhostapp\.com$/,
+    /\.onrender\.com$/,
+    /\.netlify\.app$/,
+    /\.vercel\.app$/,
+    ...process.env.FRONTEND_URLS ? process.env.FRONTEND_URLS.split(",") : []
+  ],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
   const httpServer = createServer(app2);
   const wss = new WebSocketServer({ server: httpServer, path: "/ws" });
   const clients = /* @__PURE__ */ new Set();
