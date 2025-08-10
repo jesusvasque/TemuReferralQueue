@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "📦 Instalando dependencias de producción..."
+npm install --production
+
 echo "📦 Construyendo backend para Render..."
 
 # Create output directory
