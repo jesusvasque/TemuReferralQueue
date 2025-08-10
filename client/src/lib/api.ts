@@ -1,6 +1,9 @@
-export const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://temu-referidos-api.onrender.com';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://temu-referidos-api.onrender.com';
+const endpoint = 'api/queue';
 
-fetch(`${API_BASE_URL}/api/queue`, {
+const url = new URL(endpoint, API_BASE_URL).toString();
+
+fetch(url, {
   method: 'GET',
   headers: { 'Content-Type': 'application/json' }
 });
