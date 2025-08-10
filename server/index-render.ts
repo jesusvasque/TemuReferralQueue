@@ -7,6 +7,7 @@ const app = express();
 // Configure CORS for production
 app.use(cors({
   origin: [
+    "http://referidostemuco.infinityfree.me", // <--- Agregado tu dominio aquí
     /\.infinityfreeapp\.com$/,
     /\.000webhostapp\.com$/,
     /\.onrender\.com$/,
