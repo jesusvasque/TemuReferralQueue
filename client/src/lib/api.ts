@@ -1,5 +1,5 @@
 export const API_BASE_URL = import.meta.env.VITE_API_URL || 
-  (import.meta.env.PROD ? 'https://your-backend.onrender.com' : window.location.origin);
+  (import.meta.env.PROD ? 'https://temu-referidos-api.onrender.com' : window.location.origin);
 
 export async function apiRequest(
   method: string,
