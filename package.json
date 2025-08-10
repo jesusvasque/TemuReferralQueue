@@ -8,7 +8,7 @@
     "start": "node dist-backend/index-render.js",
     "build": "esbuild server/index-render.ts --platform=node --packages=external --bundle --format=esm --outdir=dist-backend",
     "build:deps": "npm install --production",
-    "deploy": "npm run build && npm run start",
+    "deploy": "npm install && npm run build && npm run start",
     "db:push": "drizzle-kit push"
   },
   "dependencies": {
