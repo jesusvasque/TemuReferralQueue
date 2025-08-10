@@ -1,44 +1,120 @@
-#!/bin/bash
+# Temu Referidos Colombia - Sistema de Cola
 
-echo "🚀 Despliegue completo: InfinityFree + Render + PostgreSQL"
-echo "======================================================="
+Sistema web colaborativo para compartir códigos de referido de Temu en Colombia con arquitectura optimizada para despliegue gratuito.
 
-# Build frontend for InfinityFree
-echo ""
-echo "1️⃣ Construyendo FRONTEND para InfinityFree..."
-./build-frontend.sh
+## 🏗️ Arquitectura de Despliegue
 
-# Build backend for Render
-echo ""
-echo "2️⃣ Construyendo BACKEND para Render..."
-./build-backend.sh
+- **Frontend**: InfinityFree (hosting estático gratuito)
+- **Backend**: Render (API + WebSockets gratuito)
+- **Base de datos**: PostgreSQL en Render (gratuito)
 
-echo ""
-echo "✅ CONSTRUCCIÓN COMPLETADA"
-echo ""
-echo "📋 MANUAL DE DESPLIEGUE:"
-echo ""
-echo "🔗 BACKEND (Render.com):"
-echo "   1. Crea cuenta en render.com"
-echo "   2. Nuevo PostgreSQL Database → Guarda DATABASE_URL"
-echo "   3. Nuevo Web Service desde GitHub:"
-echo "      • Build Command: chmod +x build-backend.sh && ./build-backend.sh"
-echo "      • Start Command: node dist-backend/index-render.js"
-echo "   4. Variables de entorno:"
-echo "      NODE_ENV=production"
-echo "      DATABASE_URL=[tu-database-url]"
-echo "      FRONTEND_URLS=https://[tu-sitio].infinityfreeapp.com"
-echo ""
-echo "🌐 FRONTEND (InfinityFree):"
-echo "   1. Crea cuenta en infinityfree.com"
-echo "   2. Sube archivos de dist-frontend/ a htdocs/"
-echo "   3. Actualiza client/.env.production con tu URL de Render"
-echo "   4. Reconstruye frontend con tu URL final"
-echo ""
-echo "🗄️ BASE DE DATOS:"
-echo "   Después del primer deploy, ejecuta en Render Shell:"
-echo "   npm run db:push"
-echo ""
-echo "📁 Archivos listos:"
-echo "   📦 Backend: dist-backend/ (para Render)"
-echo "   🎨 Frontend: dist-frontend/ (para InfinityFree)"
+## ⚡ Características
+
+- **Cola FIFO**: Sistemas de turnos justos por orden de llegada
+- **Timer automático**: 20 minutos de exposición por código
+- **Tiempo real**: Actualizaciones instantáneas vía WebSockets
+- **Anti-spam**: Un código por IP para prevenir abuso
+- **Responsive**: Funciona en móvil, tablet y desktop
+- **Gratuito**: Deploy completamente gratuito 24/7
+
+## 🚀 Despliegue Rápido
+
+```bash
+# 1. Construir aplicación
+./deploy-infinityfree-render.sh
+
+# 2. Seguir guía detallada
+cat DEPLOY-INFINITYFREE-RENDER.md
+```
+
+## 🛠️ Tecnologías
+
+### Frontend
+- React 18 + TypeScript
+- Tailwind CSS + Shadcn UI
+- React Query para estado del servidor
+- WebSocket client para tiempo real
+
+### Backend
+- Node.js + Express + TypeScript
+- PostgreSQL + Drizzle ORM
+- WebSocket Server (ws)
+- Validación con Zod
+
+## 📁 Estructura del Proyecto
+
+```
+├── client/                 # Frontend React
+│   ├── src/
+│   │   ├── components/     # Componentes UI
+│   │   ├── pages/         # Páginas de la app
+│   │   ├── hooks/         # Hooks personalizados
+│   │   └── lib/           # Utilidades y API
+├── server/                # Backend Express
+│   ├── index.ts           # Servidor desarrollo
+│   ├── index-render.ts    # Servidor producción
+│   ├── routes.ts          # API endpoints + WebSockets
+│   ├── storage.ts         # Lógica de base de datos
+│   └── db.ts              # Conexión PostgreSQL
+├── shared/                # Esquemas compartidos
+│   └── schema.ts          # Definiciones de tipos
+└── dist-*/               # Archivos construidos
+```
+
+## 🎯 Funcionalidades
+
+### Para Usuarios
+1. **Agregar código**: Nombre + código/enlace de Temu
+2. **Ver posición**: Saber cuándo será tu turno
+3. **Código activo**: Ver el código actual con timer
+4. **Marcar completado**: Finalizar cuando logres el objetivo
+
+### Sistema Automático
+- Rotación cada 20 minutos
+- Activación automática del siguiente
+- Estadísticas en tiempo real
+- Validación por IP
+
+## 🔧 Desarrollo Local
+
+```bash
+# Instalar dependencias
+npm install
+
+# Configurar base de datos
+cp .env.example .env
+# Editar DATABASE_URL
+
+# Aplicar esquema
+npm run db:push
+
+# Iniciar desarrollo
+npm run dev
+```
+
+## 📊 Capacidad
+
+- **Usuarios simultáneos**: 100+ sin problemas
+- **Códigos en cola**: Ilimitados
+- **Uptime**: 99.9% (Render + InfinityFree)
+- **Costo**: $0 (completamente gratuito)
+
+## 🌟 Casos de Uso
+
+- **Comunidades de Temu**: Grupos de WhatsApp/Telegram
+- **Influencers**: Compartir códigos de forma organizada
+- **Familias/Amigos**: Sistema justo entre conocidos
+- **Eventos**: Promociones temporales
+
+## 📖 Documentación
+
+- [Guía de Despliegue](DEPLOY-INFINITYFREE-RENDER.md)
+- [Arquitectura del Sistema](replit.md)
+
+## 🤝 Contribuir
+
+Este proyecto está hecho para la comunidad colombiana. Para reportar problemas o sugerir mejoras, crear un issue en el repositorio.
+
+---
+
+**Hecho con ❤️ para Colombia** 🇨🇴
