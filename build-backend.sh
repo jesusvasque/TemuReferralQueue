@@ -18,7 +18,7 @@ if [ $? -eq 0 ]; then
     echo "  3. Variables de entorno requeridas:"
     echo "     - DATABASE_URL (PostgreSQL en Render)"
     echo "     - NODE_ENV=production"
-    echo "     - FRONTEND_URLS=https://tu-sitio.infinityfreeapp.com"
+    echo "     - FRONTEND_URLS=https://referidostemuco.infinityfree.me"
 else
     echo "❌ Error construyendo backend"
     exit 1
